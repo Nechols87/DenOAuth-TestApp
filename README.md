@@ -1,2 +1,2 @@
 # Denmo-App
-TEST for Denmo
+TEST for DenOAuth
