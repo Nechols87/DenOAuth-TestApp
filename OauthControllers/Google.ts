@@ -51,6 +51,7 @@ const findGoogleCode = async (ctx:any, next:any) => {
     console.log(`parsedCode ${parsedCode}`)
   
   
+    // const tokens = await fetch('https://oauth2.googleapis.com/token',{
     const tokens = await fetch('https://accounts.google.com/o/oauth2/token',{
     method: 'POST',
     headers: {

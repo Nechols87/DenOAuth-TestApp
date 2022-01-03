@@ -71,7 +71,7 @@ const OauthOne = async (ctx:any, next:any) => {
     const parsedCode = code.slice(code.indexOf('"?code=')+7, code.indexOf('&state'))
     // console.log(parsedCode)
 
-    const tokens = await fetch('https://github.com/login/oauth/access_token',{
+   await fetch('https://github.com/login/oauth/access_token',{
     method: 'POST',
       headers: {
     'Accept': 'application/json',

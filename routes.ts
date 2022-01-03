@@ -8,6 +8,8 @@ import { OauthOne, OauthTwo, sessionCheck } from './OauthControllers/gitHub.ts'
 import { LOauthOne, findCode } from './OauthControllers/LinkedIn.ts'
 import { GOauthOne, findGoogleCode } from './OauthControllers/Google.ts'
 import { ghStrat, serializerA, deserializerA } from './dashportConfig.ts';
+import { LStrategyOne, LStrategyTwo } from './OauthControllers/LinkedInDenOAuth.ts'
+import { GHStrategyOne, GHStrategyTwo } from './OauthControllers/GitHubDenOAuth.ts'
 
 // import { storeRender, purchase } from './controllers/stripe.ts'
 // import { handler } from './controllers/stripe.ts'
@@ -30,11 +32,15 @@ router.get('/', home)
       .get('/login', loginPage)
       .get('/register', registerPage)
       .get('/store', storePage)
-      .get('/gitHub', OauthOne)
+      // .get('/gitHub', OauthOne)
+      .get('/gitHub', GHStrategyOne)
       // .get('/gitHub', dashport.authenticate(ghStrat, serializerA, deserializerA), storePage)
-      .get('/linkedin', LOauthOne)
-      .get('/auth/linkedin/callback', findCode, storePage)
-      .get('/auth/github/callback', OauthTwo, storePage)
+      // .get('/linkedin', LOauthOne)
+      .get('/linkedin', LStrategyOne)
+      // .get('/auth/linkedin/callback', findCode, storePage)
+      .get('/auth/linkedin/callback', LStrategyTwo, storePage)
+      // .get('/auth/github/callback', OauthTwo, storePage)
+      .get('/auth/github/callback', GHStrategyTwo, storePage)
       .get('/google', GOauthOne)
       .get('/auth/google/callback', findGoogleCode, storePage)
       // .get('/auth/linkedin/callback', LOauthTwo, storePage)
