@@ -43,9 +43,9 @@ const GOauthOne = async (ctx:any, next:any) => {
 
 
 const findGoogleCode = async (ctx:any, next:any) => {
-    const stringPathName: String = ctx.request.url;
+    const stringPathName: string = ctx.request.url;
     
-    const code: String = JSON.stringify(stringPathName.search)
+    const code: string = JSON.stringify(stringPathName.search)
     console.log(code)
     const parsedCode = code.slice(code.indexOf('"?code=')+24, code.indexOf('&scope'))
     console.log(`parsedCode ${parsedCode}`)
@@ -55,8 +55,6 @@ const findGoogleCode = async (ctx:any, next:any) => {
     const tokens = await fetch('https://accounts.google.com/o/oauth2/token',{
     method: 'POST',
     headers: {
-      // 'Accept': 'application/json',
-      // "Content-type": "application/json"
       "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
     },
 
