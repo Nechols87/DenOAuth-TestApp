@@ -1,5 +1,5 @@
 import { config } from "https://deno.land/x/dotenv/mod.ts";
-import { GoogleClient } from 'https://raw.githubusercontent.com/oslabs-beta/DenOAuth/05a77d00a245d626b53ec813fa855ff96001df2d/mod.ts'
+import { GoogleClient } from 'https://raw.githubusercontent.com/oslabs-beta/DenOAuth/bd756b2d5d0e1bb2961dcf35fc4b9bf4f005758d/mod.ts'
 
 
 const obj = config()

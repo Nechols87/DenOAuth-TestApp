@@ -1,5 +1,4 @@
 import { Router } from "https://deno.land/x/oak/mod.ts"
-import { renderFileToString } from "https://deno.land/x/dejs@0.10.2/mod.ts";
 import { addProduct, getProducts, getProduct, deleteProduct, addToCart, deleteFromtCart, getCartProducts } from './controllers/products.ts'
 import { addUser, loginUser, logout } from './controllers/users.ts'
 import { registerPage, loginPage, home, storePage } from './controllers/render.ts'
