@@ -6,13 +6,10 @@ import { userMiddleware } from './controllers/userMiddleware.ts'
 import { OauthOne, OauthTwo, sessionCheck } from './OauthControllers/gitHub.ts'
 import { LOauthOne, findCode } from './OauthControllers/LinkedIn.ts'
 import { GOauthOne, findGoogleCode } from './OauthControllers/Google.ts'
-import { ghStrat, serializerA, deserializerA } from './dashportConfig.ts';
 import { LStrategyOne, LStrategyTwo } from './OauthControllers/LinkedInDenOAuth.ts'
 import { GHStrategyOne, GHStrategyTwo } from './OauthControllers/GitHubDenOAuth.ts'
 import {GStrategyOne, GStrategyTwo} from './OauthControllers/GoogleDenOAuth.ts'
 
-// import { storeRender, purchase } from './controllers/stripe.ts'
-// import { handler } from './controllers/stripe.ts'
 
 const router = new Router();
 
@@ -34,7 +31,6 @@ router.get('/', home)
       .get('/store', storePage)
       // .get('/gitHub', OauthOne)
       .get('/gitHub', GHStrategyOne)
-      // .get('/gitHub', dashport.authenticate(ghStrat, serializerA, deserializerA), storePage)
       // .get('/linkedin', LOauthOne)
       .get('/linkedin', LStrategyOne)
       // .get('/auth/linkedin/callback', findCode, storePage)
@@ -46,26 +42,8 @@ router.get('/', home)
       // .get('/auth/google/callback', findGoogleCode, storePage)
       .get('/auth/google/callback', GStrategyTwo, storePage)
       // .get('/auth/linkedin/callback', LOauthTwo, storePage)
+      .get('/auth/instagram/callback', storePage)
  
    
-      
-      // .get('/privatepage', dashport.authenticate(googStrat, serializerA, deserializerA),
-      //   async (ctx: any, next: any) => {
-      //   ctx.response.body = 'This is a private page!';
-      // })
-
-
-
-
-      // .get('/store', storeRender)
-
-      // router.post('/api/register', async (ctx: any) => {
-      //       const body = await ctx.request.body({ type: 'form-data '});
-      //       console.log(body)
-      //       const formData = await body.value.read();
-      //       console.log(formData.fields);
-      //       ctx.response.redirect("/");
-      //     });
-  
 
 export default router

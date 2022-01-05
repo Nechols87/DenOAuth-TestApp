@@ -1,4 +1,3 @@
-import { OAuth2Client } from "https://deno.land/x/oauth2_client/mod.ts";
 import { config } from "https://deno.land/x/dotenv/mod.ts";
 import { Client } from "https://deno.land/x/postgres/mod.ts"
 import { dbCreds } from '../config.ts'
@@ -17,8 +16,9 @@ const createLink: Function = (cliendId:String, redirect:any) => {
     const encodeLink: any = encodeURIComponent(redirect)
     let SampleLink: String = `https://accounts.google.com/o/oauth2/v2/auth?scope=https://mail.google.com&access_type=offline&include_granted_scopes=true&response_type=code&state=${state}&redirect_uri=${encodeLink}&client_id=${cliendId}`
     return SampleLink
-  }
-  const redirectGoogleLink = createLink(clientId, redirect)
+}
+
+const redirectGoogleLink = createLink(clientId, redirect)
 
 
 const setBearerToken = async (bearToken: any) => {
@@ -28,8 +28,6 @@ const setBearerToken = async (bearToken: any) => {
       },
     });
     console.log(await userResponse.json())
-    // const {localizedFirstName} = await userResponse.json()
-    // console.log(`Hello ${localizedFirstName}`)
     
 }
 
@@ -110,15 +108,3 @@ const accessToken = 'ya29.a0ARrdaM-Mgg8vzS_OEgY5LQGeJSJ6cZCKgSv7Ayb1RXiPFxw92PT2
 const refresh_token = "1//0fZThYb5fInCNCgYIARAAGA8SNwF-L9Ir3L1rAKiM8gvI9kM_OCY5gV1V5A7ESVhphNkzTjtdi9he-g0OcQhhGmzX7WwdGkBCcPg"
 
 export { GOauthOne, findGoogleCode } 
-
-// var xhr = new XMLHttpRequest();
-// xhr.open('GET',
-//     'https://www.googleapis.com/drive/v3/about?fields=user&' +
-//     'access_token=' + params['access_token']);
-// xhr.onreadystatechange = function (e) {
-//   console.log(xhr.response);
-// };
-// xhr.send(null);
-/**
- * 
- */

@@ -1,5 +1,5 @@
 import { config } from "https://deno.land/x/dotenv/mod.ts";
-import { LinkedInClient } from 'https://raw.githubusercontent.com/oslabs-beta/DenOAuth/bd756b2d5d0e1bb2961dcf35fc4b9bf4f005758d/mod.ts'
+import { LinkedInClient } from 'https://deno.land/x/denoauth@v1.0.0/mod.ts'
 
 
 const obj = config()

@@ -5,9 +5,7 @@ const client = new Client(dbCreds);
 
 const addProduct = async ({ request, response }: {request: any, response: any }) => {
     const body = await request.body();
-    // console.log(body);
     const product = await body.value
-    // console.log(body.value)
     if (!request.hasBody) {
         response.status = 400
         response.body = {
@@ -29,7 +27,6 @@ const addProduct = async ({ request, response }: {request: any, response: any })
             success: true,
             data: product
         }
-        // console.log(product)
     } catch (err) {
         response.status = 500
         response.body = {
@@ -47,8 +44,6 @@ const getProducts = async ({ response }:{ response: any }) => {
         await client.connect()
 
         const result = await client.queryObject("SELECT * FROM products")
-        console.log(result.rows)
-        // const products = [];
         let products;
         if (!result.rows.length){
             products = 'no products yet'
@@ -75,10 +70,7 @@ const getProducts = async ({ response }:{ response: any }) => {
 const getCartProducts = async ({ response }:{ response: any }) => {
     try {
         await client.connect()
-
         const result = await client.queryObject(`SELECT * FROM products WHERE incart = '${true}'`)
-        console.log(result.rows)
-        // const products = [];
         let products;
         if (!result.rows.length){
             products = 'no products yet'
@@ -105,9 +97,6 @@ const getCartProducts = async ({ response }:{ response: any }) => {
 const getProduct = async ({ params, response }:{ params: {id: string}, response: any }) => {
     try {
         await client.connect()
-
-        // console.log(params)
-
         const result = await client.queryObject("SELECT * FROM products WHERE id = $1", params.id)
         
         let product;
@@ -134,9 +123,6 @@ const getProduct = async ({ params, response }:{ params: {id: string}, response:
 const deleteProduct = async ({ params, response }:{ params: {id: string}, response: any }) => {
     try {
         await client.connect()
-
-        // console.log(params)
-
         const result = await client.queryObject("DELETE FROM products WHERE id = $1", params.id)
         
         let product;
