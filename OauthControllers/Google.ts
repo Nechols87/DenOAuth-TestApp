@@ -11,10 +11,10 @@ const redirect:string = "http://localhost:3000/auth/google/callback"
 
 const hardCode = 'https://accounts.google.com/o/oauth2/v2/auth?scope=https://mail.google.com&access_type=offline&include_granted_scopes=true&response_type=code&state=state_parameter_passthrough_value&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fstore&client_id=355975710617-72oa7uqupki1hhce0c036ai69edioj7e.apps.googleusercontent.com'
 
-const createLink: Function = (cliendId:String, redirect:any) => {
-    const state: Number = Math.floor(Math.random() * 1000000000)
+const createLink = (cliendId:string, redirect:any) => {
+    const state: number = Math.floor(Math.random() * 1000000000)
     const encodeLink: any = encodeURIComponent(redirect)
-    let SampleLink: String = `https://accounts.google.com/o/oauth2/v2/auth?scope=https://mail.google.com&access_type=offline&include_granted_scopes=true&response_type=code&state=${state}&redirect_uri=${encodeLink}&client_id=${cliendId}`
+    let SampleLink: string = `https://accounts.google.com/o/oauth2/v2/auth?scope=https://mail.google.com&access_type=offline&include_granted_scopes=true&response_type=code&state=${state}&redirect_uri=${encodeLink}&client_id=${cliendId}`
     return SampleLink
 }
 
@@ -89,12 +89,7 @@ const findGoogleCode = async (ctx:any, next:any) => {
         i++
       }
       const bearerToken = tokenArr.join('')
-      // obj = JSON.stringify(obj)
-      // // console.log(obj)
-      // let Btoken = [];
-      // for(const token in obj) {
-      //   Btoken.push(token)
-      // }
+
       console.log(`typeof for token ${typeof bearerToken}`)
       console.log('access_token', bearerToken)
   
@@ -104,7 +99,5 @@ const findGoogleCode = async (ctx:any, next:any) => {
    
     return await next();
   }
-const accessToken = 'ya29.a0ARrdaM-Mgg8vzS_OEgY5LQGeJSJ6cZCKgSv7Ayb1RXiPFxw92PT2YsVdRtYg6fgdnKuqjhLUbvozSN6eiRWU5c6g4ARCGwGY80Na3M2C1oVonxKqY5tRf9MMg25y0497t85hZ2XwLCDCtpCnvsYmiU6mLuXD'
-const refresh_token = "1//0fZThYb5fInCNCgYIARAAGA8SNwF-L9Ir3L1rAKiM8gvI9kM_OCY5gV1V5A7ESVhphNkzTjtdi9he-g0OcQhhGmzX7WwdGkBCcPg"
 
 export { GOauthOne, findGoogleCode } 

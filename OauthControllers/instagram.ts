@@ -6,14 +6,14 @@ const client = new Client(dbCreds);
 
 const obj = config()
 const clientKey = Object.values(obj)[5]
-const clientId:string = '600751907683951'
+const clientId:string = '3187395301489595'
 const redirect:string = "https://localhost:3000/auth/instagram/callback/"
 const scope:string = 'user_profile' 
 
 
 // const SampleLink: String = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id={your_client_id}&redirect_uri={your_callback_url}&state=foobar&scope=r_liteprofile%20r_emailaddress%20w_member_social`
 
-const createLink = (cliendId:String, redirect:any, scope:String) => {
+const createLink = (cliendId:string, redirect:any, scope:string) => {
   const state: number = Math.floor(Math.random() * 1000000000)
 //   const encode: string = encodeURIComponent(redirect)
   let SampleLink: string = `https://api.instagram.com/oauth/authorize?response_type=code&client_id=${cliendId}&redirect_uri=${redirect}&state=${state}&scope=${scope}`
