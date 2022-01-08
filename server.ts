@@ -21,3 +21,4 @@ console.log(`Server running on port ${port}`)
 
 await app.listen({port: +port})
 
+export default app;

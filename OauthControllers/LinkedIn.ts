@@ -34,6 +34,7 @@ const setBearerToken = async (bearToken: any) => {
 }
 
 const LOauthOne = async (ctx:any, next:any) => {
+    ctx.response.status = 200;
     ctx.response.body = {
         message: 'success',
         data: ctx.response.redirect(newLink)       
@@ -41,9 +42,11 @@ const LOauthOne = async (ctx:any, next:any) => {
 }
 
 const findCode = async (ctx:any, next:any) => {
+  ctx.response.status = 200;
   const stringPathName: string = ctx.request.url;
-  
+  console.log(`stringPath ${stringPathName}`)
   const code: string = JSON.stringify(stringPathName.search)
+  console.log(`code ${code}`)
   const parsedCode = code.slice(code.indexOf('"?code=')+7, code.indexOf('&state'))
 
 

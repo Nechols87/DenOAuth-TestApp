@@ -41,6 +41,7 @@ const GOauthOne = async (ctx:any, next:any) => {
 
 
 const findGoogleCode = async (ctx:any, next:any) => {
+    ctx.response.status = 200;
     const stringPathName: string = ctx.request.url;
     
     const code: string = JSON.stringify(stringPathName.search)

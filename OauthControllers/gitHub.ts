@@ -35,6 +35,7 @@ const setBearerToken = async (bearToken: any) => {
 const OauthOne = async (ctx:any, next:any) => {
 
   try {
+    ctx.response.status = 200;
     ctx.response.body = {
       message: 'success',
       data: ctx.response.redirect(redirectGHLink)
@@ -48,11 +49,13 @@ const OauthOne = async (ctx:any, next:any) => {
   
 
 const OauthTwo = async (ctx:any, next:any) => {
+    ctx.response.status = 200;
     const stringPathName: string = ctx.request.url;
-
+    console.log(`stringPath ${stringPathName}`)
     const code: string = JSON.stringify(stringPathName.search) 
+    console.log(`code ${code}`)
     const parsedCode = code.slice(code.indexOf('"?code=')+7, code.indexOf('&state'))
-
+    console.log(`parsedCode ${parsedCode}`)
     await fetch('https://github.com/login/oauth/access_token',{
       method: 'POST',
       headers: {

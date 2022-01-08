@@ -1,5 +1,5 @@
 import { config } from "https://deno.land/x/dotenv/mod.ts";
-import { GoogleClient } from 'https://deno.land/x/denoauth@v1.0.0/mod.ts'
+import { GoogleClient } from 'https://deno.land/x/denoauth@v1.0.6/mod.ts'
 
 
 const obj = config()
@@ -18,6 +18,7 @@ const GoogleObject = new GoogleClient({
 });
 
 const GStrategyOne = async (ctx:any) => {
+    ctx.response.status = 200;
     // Creating a link to redirect user to signin to LinkedIn and redirect to callback url.
     ctx.response.body = {
         message: 'success',
@@ -26,6 +27,7 @@ const GStrategyOne = async (ctx:any) => {
 }
 
 const GStrategyTwo = async (ctx: any, next:any) => {
+    ctx.response.status = 200;
     // Exchange the authorization code for an access token and exchange token for profile
     const userProfile: any = await GoogleObject.code.processAuth(ctx.request.url);
     console.log(userProfile)

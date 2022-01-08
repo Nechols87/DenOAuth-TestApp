@@ -14,14 +14,12 @@ const scope:string = 'user-read-email'
 
 
 const createLink = (clientId:string, redirect:any, scope:string) => {
-//   const state: number = Math.floor(Math.random() * 1000000000)
-//   const encode: string = encodeURIComponent(redirect)
-  const SampleLink = `https://accounts.spotify.com/authorize?client_id=${clientId}&scope=${scope}&response_type=code&redirect_uri=${redirect}`
+  const state: number = Math.floor(Math.random() * 1000000000)
+  const SampleLink = `https://accounts.spotify.com/authorize?client_id=${clientId}&scope=${scope}&response_type=code&redirect_uri=${redirect}&state=${state}`
   return SampleLink
 }
 
 const newLink = createLink(clientId, redirect, scope)
-
 
 const setBearerToken = async (bearToken: any) => {
   const userResponse = await fetch("https://api.spotify.com/v1/me", {
@@ -35,6 +33,7 @@ const setBearerToken = async (bearToken: any) => {
 }
 
 const SOauthOne = async (ctx:any, next:any) => {
+  ctx.response.status = 200;
     ctx.response.body = {
         message: 'success',
         data: ctx.response.redirect(newLink)       
@@ -42,8 +41,9 @@ const SOauthOne = async (ctx:any, next:any) => {
 }
 
 const findCode2 = async (ctx:any, next:any) => {
+  ctx.response.status = 200;
   const stringPathName: string = ctx.request.url;
-  
+  console.log(`stringPathName ${stringPathName}`)
   const code: string = JSON.stringify(stringPathName.search)
   const parsedCode = code.slice(code.indexOf('"?code=')+7, code.indexOf('&state'))
 

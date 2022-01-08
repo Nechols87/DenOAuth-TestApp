@@ -1,5 +1,5 @@
 import { config } from "https://deno.land/x/dotenv/mod.ts";
-import { LinkedInClient } from 'https://deno.land/x/denoauth@v1.0.0/mod.ts'
+import { LinkedInClient } from 'https://deno.land/x/denoauth@v1.0.6/mod.ts'
 
 
 const obj = config()
@@ -19,6 +19,7 @@ const LinkedInObject = new LinkedInClient({
 });
 
 const LStrategyOne = async (ctx:any) => {
+    ctx.response.status = 200;
     // Creating a link to redirect user to signin to LinkedIn and redirect to callback url.
     ctx.response.body = {
         message: 'success',
@@ -27,6 +28,7 @@ const LStrategyOne = async (ctx:any) => {
 }
 
 const LStrategyTwo = async (ctx: any, next:any) => {
+    ctx.response.status = 200;
     // Exchange the authorization code for an access token and exchange token for profile
     const userProfile: any = await LinkedInObject.code.processAuth(ctx.request.url);
     // userProfile is an object of information given by LinkedIn. You can destructure the object to grab specific information
